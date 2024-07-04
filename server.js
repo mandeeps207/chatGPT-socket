@@ -2,12 +2,19 @@ const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 io.on('connection', (socket) => {
   console.log('a user connected');
