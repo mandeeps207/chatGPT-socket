@@ -15,7 +15,8 @@ const sessionMiddleware = session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: process.env.COOKIE_PARAM || false, // Use secure cookies in production
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Set SameSite to None for secure cookies
         maxAge: 14 * 24 * 60 * 60 * 1000, // 14 days in milliseconds
     },
 });
