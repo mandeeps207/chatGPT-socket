@@ -9,11 +9,6 @@ const sessionMiddleware = session({
         ttl: 14 * 24 * 60 * 60, // = 14 days. Default
         dbName: 'socketio-chat-app',
         collectionName: 'sessions',
-        autoRemove: 'native', // Default
-        mongoOptions: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        },
         stringify: false,
     }),
     secret: process.env.SESSION_KEY,
