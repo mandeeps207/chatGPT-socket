@@ -12,8 +12,8 @@ const sessionMiddleware = session({
         stringify: false,
     }),
     secret: process.env.SESSION_KEY,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
         secure: true, // Use secure cookies in production
         sameSite: 'None', // Set SameSite to None for secure cookies
