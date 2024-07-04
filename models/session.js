@@ -12,11 +12,11 @@ const sessionMiddleware = session({
         stringify: false,
     }),
     secret: process.env.SESSION_KEY,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
-        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-        sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Set SameSite to None for secure cookies
+        secure: true, // Use secure cookies in production
+        sameSite: 'None', // Set SameSite to None for secure cookies
         maxAge: 14 * 24 * 60 * 60 * 1000, // 14 days in milliseconds
     },
 });
