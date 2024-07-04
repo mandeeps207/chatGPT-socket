@@ -1,8 +1,7 @@
-import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'node:http';
 import { Server } from 'socket.io';
-import session from 'express-session';
+import sessionMiddleware from './models/session.js';
 import path from 'path';
 
 // Initiating socket server
@@ -15,17 +14,12 @@ const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // handle socket middlewares
-const sessionMiddleware = session({
-  secret: process.env.SESSION_KEY,
-  resave: true,
-  saveUninitialized: true,
-  cookie: {
-      sameSite: 'strict', // Add SameSite attribute
-  } 
-});
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(sessionMiddleware);
+
+// Share session middleware with Socket.IO
 io.engine.use(sessionMiddleware);
 
 // Serve homepage template
