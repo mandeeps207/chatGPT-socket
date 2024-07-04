@@ -13,7 +13,7 @@ const sessionMiddleware = session({
     }),
     secret: process.env.SESSION_KEY,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         secure: process.env.COOKIE_PARAM || false, // Use secure cookies in production
         maxAge: 14 * 24 * 60 * 60 * 1000, // 14 days in milliseconds

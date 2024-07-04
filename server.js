@@ -24,7 +24,8 @@ io.engine.use(sessionMiddleware);
 
 // Serve homepage template
 app.get('/', (req, res) => {
-  res.render('index');
+  const session = req.session;
+  res.render('index', {session});
 });
 
 io.on('connection', (socket) => {
